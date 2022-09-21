@@ -15,11 +15,4 @@ public class User {
     private String title;
     private Integer age;
     private List<Long> books;
-
-    public void addBook(Book book){
-        books.add(book.getId());
-    }
-    public void deleteBook(Book book){
-        books.remove(book.getId());
-    }
 }

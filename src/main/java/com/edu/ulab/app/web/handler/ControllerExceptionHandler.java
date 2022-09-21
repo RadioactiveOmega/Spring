@@ -1,6 +1,9 @@
 package com.edu.ulab.app.web.handler;
 
+import com.edu.ulab.app.exception.CreationFailedExeption;
+import com.edu.ulab.app.exception.DeletionFailedExeption;
 import com.edu.ulab.app.exception.NotFoundException;
+import com.edu.ulab.app.exception.UpdateFailedExeption;
 import com.edu.ulab.app.web.response.BaseWebResponse;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +23,24 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new BaseWebResponse(createErrorMessage(exc)));
     }
-
+    @ExceptionHandler(CreationFailedExeption.class)
+    public ResponseEntity<BaseWebResponse> handleCreationFailedExeptionException(@NonNull final CreationFailedExeption exc) {
+        log.error(exc.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new BaseWebResponse(createErrorMessage(exc)));
+    }
+    @ExceptionHandler(DeletionFailedExeption.class)
+    public ResponseEntity<BaseWebResponse> handleDeletionFailedExeptionException(@NonNull final DeletionFailedExeption exc) {
+        log.error(exc.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new BaseWebResponse(createErrorMessage(exc)));
+    }
+    @ExceptionHandler(UpdateFailedExeption.class)
+    public ResponseEntity<BaseWebResponse> handleUpdateFailedExeptionException(@NonNull final UpdateFailedExeption exc) {
+        log.error(exc.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new BaseWebResponse(createErrorMessage(exc)));
+    }
     private String createErrorMessage(Exception exception) {
         final String message = exception.getMessage();
         log.error(ExceptionHandlerUtils.buildErrorMessage(exception));

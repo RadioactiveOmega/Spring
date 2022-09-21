@@ -1,4 +1,4 @@
-package com.edu.ulab.app.config;
+package com.edu.ulab.app.facade.config;
 
 import com.edu.ulab.app.web.constant.SwaggerInfo;
 import io.swagger.v3.oas.models.OpenAPI;
